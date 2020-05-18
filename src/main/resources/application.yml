@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/e_shop_rs
+    username: "postgres"
+    password: "248842"
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+      driver-class-name: "org.postgresql.Driver"
+  jpa:
+    show-sql: true
+    hibernate:
+        ddl-auto: update
+#    profiles:
+#      active: rest
