@@ -36,7 +36,7 @@ public class ItemController {
         return  new ResponseEntity<>(item, HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @GetMapping(path = "/id")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Item> getById(@PathVariable Integer id){
         return new ResponseEntity<>(itemService.findById(id), HttpStatus.OK);
     }
@@ -62,6 +62,12 @@ public class ItemController {
         return new ResponseEntity<>(itemService.getAllAvailable(), HttpStatus.OK);
     }
 
-
-
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity delete(@PathVariable Integer id){
+        Item item = itemService.findById(id);
+        if (item != null){
+            itemService.delete(item);
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }
