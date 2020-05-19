@@ -1,14 +1,15 @@
 package info.sjd.controller;
 
+import info.sjd.model.Cart;
 import info.sjd.model.Item;
+import info.sjd.model.User;
 import info.sjd.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("item")
@@ -34,6 +35,33 @@ public class ItemController {
         }
         return  new ResponseEntity<>(item, HttpStatus.NOT_ACCEPTABLE);
     }
+
+    @GetMapping(path = "/id")
+    public ResponseEntity<Item> getById(@PathVariable Integer id){
+        return new ResponseEntity<>(itemService.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List> getAll(){
+        return new ResponseEntity<>(itemService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "by-code")
+    public ResponseEntity<List> getByCode(@RequestParam String login){
+        return new ResponseEntity<>(itemService.getByCode(login), HttpStatus.OK);
+    }
+
+
+    @GetMapping(path = "by-cart")
+    public ResponseEntity<List> getAllByCart(@RequestBody Cart cart){
+        return new ResponseEntity<>(itemService.getAllByCart(cart), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List> getAllAvailable(){
+        return new ResponseEntity<>(itemService.getAllAvailable(), HttpStatus.OK);
+    }
+
 
 
 }

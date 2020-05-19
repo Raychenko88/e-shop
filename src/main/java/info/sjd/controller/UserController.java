@@ -51,13 +51,12 @@ public class UserController {
     }
 
     @GetMapping(path = "by-login-and-password")
-    public ResponseEntity<User> getByLoginAndPassword(@RequestParam String login,
-                                           @RequestParam String password){
+    public ResponseEntity<User> getByLoginAndPassword(@RequestParam String login, @RequestParam String password){
         return new ResponseEntity<>(userService.findByLoginAndPassword(login, password), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity getByLoginAndPassword(@PathVariable Integer id){
+    public ResponseEntity delete(@PathVariable Integer id){
         User user = userService.findById(id);
         if (user != null) {
             userService.delete(user);
