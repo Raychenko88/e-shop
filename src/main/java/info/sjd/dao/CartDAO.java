@@ -9,9 +9,9 @@ import java.util.List;
 
 @Repository
 public interface CartDAO extends JpaRepository<Cart, Integer> {
-    List<Cart> getAllByUserAndPeriod(User user, Long timeFrom, Long timeTo);
+//    List<Cart> getAllByUserAndPeriod(User user, Long timeFrom, Long timeTo);
 
-    Cart getByUserAndOpenStatus(User user, Integer status);
+//    Cart getByUserAndOpenStatus(User user, Integer status);
 
-    Cart updateStatus(Cart cart, Integer closed);
+//    Cart updateStatus(Cart cart, Integer closed);
 }
