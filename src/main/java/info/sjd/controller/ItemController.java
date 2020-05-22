@@ -24,16 +24,16 @@ public class ItemController {
         if (itemFromDB == null){
             return new ResponseEntity<>(item, HttpStatus.OK);
         }
-        return new ResponseEntity<>(item, HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @PutMapping
+    @PutMapping(path = "update")
     public ResponseEntity<Item> update (@RequestBody Item item){
         Item itemFromDB = itemService.update(item);
         if (itemFromDB != null){
             return new ResponseEntity<>(item, HttpStatus.OK);
         }
-        return  new ResponseEntity<>(item, HttpStatus.NOT_ACCEPTABLE);
+        return  new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @GetMapping(path = "/{id}")
@@ -47,20 +47,20 @@ public class ItemController {
     }
 
     @GetMapping(path = "by-code")
-    public ResponseEntity<List> getByCode(@RequestParam String login){
-        return new ResponseEntity<>(itemService.getByCode(login), HttpStatus.OK);
+    public ResponseEntity<List> getByCode(@RequestParam String code){
+        return new ResponseEntity<>(itemService.getByCode(code), HttpStatus.OK);
     }
 
 
-    @GetMapping(path = "by-cart")
-    public ResponseEntity<List> getAllByCart(@RequestBody Cart cart){
-        return new ResponseEntity<>(itemService.getAllByCart(cart), HttpStatus.OK);
-    }
+//    @GetMapping(path = "by-cart")
+//    public ResponseEntity<List> getAllByCart(@RequestParam Cart cart){
+//        return new ResponseEntity<>(itemService.getAllByCart(cart), HttpStatus.OK);
+//    }
 
-    @GetMapping
-    public ResponseEntity<List> getAllAvailable(){
-        return new ResponseEntity<>(itemService.getAllAvailable(), HttpStatus.OK);
-    }
+//    @GetMapping(path = "all-available")
+//    public ResponseEntity<List> getAllAvailable(){
+//        return new ResponseEntity<>(itemService.getAllAvailable(), HttpStatus.OK);
+//    }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable Integer id){

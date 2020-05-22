@@ -21,7 +21,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item save(Item item) {
-        if (item.getId() == null && item.getCode() == null){
+        if (item.getId() == null && item.getCode() != null){
             log.info("Item was created");
             return itemDAO.save(item);
         }
@@ -57,16 +57,14 @@ public class ItemServiceImpl implements ItemService {
         return itemDAO.getByCode(code);
     }
 
-    @Override
-    public List<Item> getAllByCart(Cart cart) {
-        if (cart != null){
-            return itemDAO.getAllByCart(cart);
-        }
-        return null;
-    }
+//    @Override
+//    public List<Item> getAllByCart(Cart cart) {
+//        List<Item> items = itemDAO.getAllByCart(cart);
+//        return items;
+//    }
 
-    @Override
-    public List<Item> getAllAvailable() {
-        return itemDAO.getAllAvailable();
-    }
+//    @Override
+//    public List<Item> getAllAvailable() {
+//        return itemDAO.getAllAvailable();
+//    }
 }

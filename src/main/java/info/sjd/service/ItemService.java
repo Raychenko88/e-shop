@@ -12,6 +12,6 @@ public interface ItemService {
     void delete(Item item);
     List<Item> getAll();
     List<Item> getByCode(String code);
-    List<Item> getAllByCart(Cart cart);
-    List<Item> getAllAvailable();
+//    List<Item> getAllByCart(Cart cart);
+//    List<Item> getAllAvailable();
 }

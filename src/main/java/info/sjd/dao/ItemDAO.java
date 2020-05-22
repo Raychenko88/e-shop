@@ -11,7 +11,7 @@ import java.util.List;
 public interface ItemDAO extends JpaRepository<Item, Integer> {
     List<Item> getByCode(String code);
 
-    List<Item> getAllByCart(Cart cart);
+//    List<Item> getAllByCart(Cart cart);
 
-    List<Item> getAllAvailable();
+//    List<Item> getAllAvailable();
 }
