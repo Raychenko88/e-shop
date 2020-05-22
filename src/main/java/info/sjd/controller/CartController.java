@@ -18,17 +18,17 @@ public class CartController {
 
     @PutMapping
     public ResponseEntity<Cart> save(@RequestBody Cart cart) {
-        Cart cartDAO = cartService.save(cart);
-        if (cartDAO == null) {
+        Cart cartFromDB = cartService.save(cart);
+        if (cartFromDB == null) {
             return new ResponseEntity<>(cart, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @PutMapping
+    @PostMapping
     public ResponseEntity<Cart> update(@RequestBody Cart cart) {
-        Cart cartDAO = cartService.update(cart);
-        if (cartDAO != null) {
+        Cart cartFromDB = cartService.update(cart);
+        if (cartFromDB != null) {
             return new ResponseEntity<>(cart, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
@@ -46,9 +46,9 @@ public class CartController {
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Cart> delete(@PathVariable Integer id){
-        Cart cartDAO = cartService.findById(id);
-        if (cartDAO != null){
-            cartService.delete(cartDAO);
+        Cart cartFromDB = cartService.findById(id);
+        if (cartFromDB != null){
+            cartService.delete(cartFromDB);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

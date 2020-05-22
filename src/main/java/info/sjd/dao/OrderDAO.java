@@ -11,11 +11,12 @@ import java.util.List;
 
 @Repository
 public interface OrderDAO extends JpaRepository<Order, Integer> {
-    List<Order> getAllByCart(Cart cart);
+//    List<Order> getAllByCart(Cart cart);
 
-    Order updateAmount(Order order, Integer amount);
+//    Order updateAmount(Order order, Integer amount);
 
-    Order findOrderByItem(Integer itemId);
+//    Order findOrderByItem(Integer itemId);
 
-    List<Order> findByCart(Integer cartId);
+//    List<Order> findByCart(Integer cartId);
+
 }
