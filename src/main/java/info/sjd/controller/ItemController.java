@@ -27,7 +27,7 @@ public class ItemController {
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @PutMapping(path = "update")
+    @PostMapping
     public ResponseEntity<Item> update (@RequestBody Item item){
         Item itemFromDB = itemService.update(item);
         if (itemFromDB != null){
