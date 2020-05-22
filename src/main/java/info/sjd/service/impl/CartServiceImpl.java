@@ -58,7 +58,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart getByUserAndOpenStatus(User user) {
-        return cartDAO.getByUserAndOpenStatus(user);
+        return cartDAO.getByUserAndOpenStatus(user, 1);
     }
 
     @Override

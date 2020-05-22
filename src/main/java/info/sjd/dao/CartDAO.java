@@ -11,7 +11,7 @@ import java.util.List;
 public interface CartDAO extends JpaRepository<Cart, Integer> {
     List<Cart> getAllByUserAndPeriod(User user, Long timeFrom, Long timeTo);
 
-    Cart getByUserAndOpenStatus(User user);
+    Cart getByUserAndOpenStatus(User user, Integer status);
 
     Cart updateStatus(Cart cart, Integer closed);
 }
