@@ -28,9 +28,12 @@ class UserDAOTest {
 
     @Test
     void findByLogin() {
-        User user = new User(1,"test_login", "test_pass", "test_fn", "test_ln");
-        userDAO.save(user);
-        user.setLogin("t_login");
+        User user = User.builder()
+                .login("test_login")
+                .password("test_pass")
+                .firstName("test_fn")
+                .lastName("test_ln")
+                .build();
         userDAO.save(user);
         User userFromDB = userDAO.findById(user.getId()).orElse(null);
         assertNotNull(userFromDB);
