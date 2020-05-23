@@ -54,13 +54,13 @@ public class CartController {
     }
 
     @GetMapping(path = "get_all_by_user_and_period")
-    public ResponseEntity<List> getAllByUserAndPeriod(@RequestParam Integer userId, Long timeDown, Long timUp){
-        return new ResponseEntity<>(cartService.getAllByUserAndPeriod(userId, timeDown, timUp), HttpStatus.OK);
+    public ResponseEntity<List> getAllByUserAndPeriod(@RequestParam Integer userId, Long timeDown, Long timeUp){
+        return new ResponseEntity<>(cartService.getAllByUserAndPeriod(userId, timeDown, timeUp), HttpStatus.OK);
     }
 
     @GetMapping(path = "open_status")
-    public ResponseEntity<Cart> getByUserAndOpenStatus(@RequestParam Integer id, Integer status){
-        return new ResponseEntity<>(cartService.getByUserAndOpenStatus(id,status), HttpStatus.OK);
+    public ResponseEntity<Cart> getByUserAndOpenStatus(@RequestParam Integer id){
+        return new ResponseEntity<>(cartService.getByUserAndOpenStatus(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "update_status")

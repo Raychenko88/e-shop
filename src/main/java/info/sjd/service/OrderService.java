@@ -15,6 +15,4 @@ public interface OrderService {
     List<Order> findAllByCart(Integer id);
     Order updateAmount(Integer id, Integer amount);
     Order findOrderByItem(Integer itemId);
-    List<Order> findByCart(Integer cartId);
-
 }

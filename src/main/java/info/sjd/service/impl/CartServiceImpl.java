@@ -52,13 +52,13 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<Cart> getAllByUserAndPeriod(Integer userId, Long timeDown, Long timUp) {
-        return cartDAO.getAllByUserAndPeriod(userId, timeDown, timUp);
+    public List<Cart> getAllByUserAndPeriod(Integer userId, Long timeDown, Long timeUp) {
+        return cartDAO.getAllByUserAndPeriod(userId, timeDown, timeUp);
     }
 
     @Override
-    public Cart getByUserAndOpenStatus(Integer id, Integer status) {
-        return cartDAO.getByUserAndOpenStatus(id, status);
+    public Cart getByUserAndOpenStatus(Integer id) {
+        return cartDAO.getByUserAndOpenStatus(id);
     }
 
     @Override

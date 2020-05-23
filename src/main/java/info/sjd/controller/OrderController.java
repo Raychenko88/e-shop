@@ -71,9 +71,4 @@ public class OrderController {
     public ResponseEntity<Order> findOrderByItem(@RequestParam Integer itemId){
         return new ResponseEntity<>(orderService.findOrderByItem(itemId), HttpStatus.OK);
     }
-
-    @GetMapping(path = "find_by_cart")
-    public ResponseEntity<List> findByCart(@RequestParam Integer cartId){
-        return new ResponseEntity<>(orderService.findAllByCart(cartId), HttpStatus.OK);
-    }
 }

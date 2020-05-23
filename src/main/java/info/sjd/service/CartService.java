@@ -12,7 +12,7 @@ public interface CartService {
     Cart update(Cart cart);
     void delete(Cart cart);
     List<Cart> findAll();
-    List<Cart> getAllByUserAndPeriod(Integer userId, Long timeDown, Long timUp);
-    Cart getByUserAndOpenStatus(Integer id, Integer status);
+    List<Cart> getAllByUserAndPeriod(Integer userId, Long timeDown, Long timeUp);
+    Cart getByUserAndOpenStatus(Integer id);
     Cart updateStatus(Integer idParam, Integer closedParam);
 }

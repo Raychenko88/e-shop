@@ -53,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findAllByCart(Integer id) {
-        return orderDAO.findByCart(id);
+        return orderDAO.getAllByCart(id);
     }
 
     @Override
@@ -68,10 +68,5 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order findOrderByItem(Integer itemId) {
         return orderDAO.findOrderByItem(itemId);
-    }
-
-    @Override
-    public List<Order> findByCart(Integer cartId) {
-        return orderDAO.findByCart(cartId);
     }
 }

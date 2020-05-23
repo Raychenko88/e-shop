@@ -27,8 +27,4 @@ public interface OrderDAO extends JpaRepository<Order, Integer> {
             "WHERE c.closed = '0' " +
             "AND i.id =:itemId", nativeQuery = true)
     Order findOrderByItem(Integer itemId);
-
-    @Query(value = "SELECT * FROM orders WHERE cart_id=:cartIdParam", nativeQuery = true)
-    List<Order> findByCart(Integer cartIdParam);
-
 }

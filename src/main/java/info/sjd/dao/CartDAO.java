@@ -11,12 +11,12 @@ import java.util.List;
 @Repository
 public interface CartDAO extends JpaRepository<Cart, Integer> {
 
-    @Query(value = "SELECT * FROM carts WHERE user_id=:userId AND creation_time >=:timeDown AND creation_time <=:timUp",
+    @Query(value = "SELECT * FROM carts WHERE user_id=:userId AND creation_time >=:timeDown AND creation_time <=:timeUp",
             nativeQuery = true)
-    List<Cart> getAllByUserAndPeriod(Integer userId, Long timeDown, Long timUp);
+    List<Cart> getAllByUserAndPeriod(Integer userId, Long timeDown, Long timeUp);
 
     @Query(value = "SELECT * FROM carts WHERE user_id =:id AND closed='0'", nativeQuery = true)
-    Cart getByUserAndOpenStatus(Integer id, Integer status);
+    Cart getByUserAndOpenStatus(Integer id);
 
     @Query(value = "UPDATE carts SET closed=:closedParam WHERE id =:idParam",nativeQuery = true)
     Cart updateStatus(Integer idParam, Integer closedParam);

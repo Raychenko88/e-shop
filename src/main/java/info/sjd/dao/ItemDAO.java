@@ -12,7 +12,7 @@ import java.util.List;
 public interface ItemDAO extends JpaRepository<Item, Integer> {
     List<Item> getByCode(String code);
 
-    @Query(value = "SELECT ALL FROM items i " +
+    @Query(value = "SELECT * FROM items i " +
             "JOIN orders o ON o.item_id = i.id " +
             "JOIN carts c ON c.id = o.cart_id " +
             "WHERE c.id =:cartId ", nativeQuery = true)
