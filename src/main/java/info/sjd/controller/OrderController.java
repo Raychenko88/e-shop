@@ -52,4 +52,28 @@ public class OrderController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping(path = "find_all_by_cart")
+    public ResponseEntity<List> findAllByCart(@RequestParam Integer id){
+        return new ResponseEntity<>(orderService.findAllByCart(id), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "update_amount")
+    public ResponseEntity<Order> updateAmount(@RequestParam Integer id, Integer amount){
+        Order order = orderService.updateAmount(id, amount);
+        if (order != null){
+            return new ResponseEntity<>(orderService.updateAmount(id,amount), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @GetMapping(path = "find_order_by_item")
+    public ResponseEntity<Order> findOrderByItem(@RequestParam Integer itemId){
+        return new ResponseEntity<>(orderService.findOrderByItem(itemId), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "find_by_cart")
+    public ResponseEntity<List> findByCart(@RequestParam Integer cartId){
+        return new ResponseEntity<>(orderService.findAllByCart(cartId), HttpStatus.OK);
+    }
 }

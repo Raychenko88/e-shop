@@ -51,11 +51,27 @@ public class OrderServiceImpl implements OrderService {
         return orderDAO.findAll();
     }
 
-//    @Override
-//    public Order updateAmount(Order order, Integer amount) {
-//        if (order.getId() != null){
-//            return orderDAO.updateAmount(order,amount);
-//        }
-//        return null;
-//    }
+    @Override
+    public List<Order> findAllByCart(Integer id) {
+        return orderDAO.findByCart(id);
+    }
+
+    @Override
+    public Order updateAmount(Integer id, Integer amount) {
+        Order order = orderDAO.findById(id).orElse(null);
+        if (order.getId() != null){
+            return orderDAO.updateAmount(order.getId(),amount);
+        }
+        return null;
+    }
+
+    @Override
+    public Order findOrderByItem(Integer itemId) {
+        return orderDAO.findOrderByItem(itemId);
+    }
+
+    @Override
+    public List<Order> findByCart(Integer cartId) {
+        return orderDAO.findByCart(cartId);
+    }
 }

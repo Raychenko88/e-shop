@@ -52,4 +52,23 @@ public class CartController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping(path = "get_all_by_user_and_period")
+    public ResponseEntity<List> getAllByUserAndPeriod(@RequestParam Integer userId, Long timeDown, Long timUp){
+        return new ResponseEntity<>(cartService.getAllByUserAndPeriod(userId, timeDown, timUp), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "open_status")
+    public ResponseEntity<Cart> getByUserAndOpenStatus(@RequestParam Integer id, Integer status){
+        return new ResponseEntity<>(cartService.getByUserAndOpenStatus(id,status), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "update_status")
+    public ResponseEntity<Cart> updateStatus(@RequestParam Integer idParam, Integer closedParam){
+        Cart cart = cartService.updateStatus(idParam, closedParam);
+        if (cart != null){
+            return new ResponseEntity<>(cartService.updateStatus(idParam,closedParam), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+    }
 }
