@@ -4,6 +4,7 @@ import info.sjd.model.Cart;
 import info.sjd.model.Item;
 import info.sjd.model.User;
 import info.sjd.service.ItemService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,15 +53,15 @@ public class ItemController {
     }
 
 
-//    @GetMapping(path = "by-cart")
-//    public ResponseEntity<List> getAllByCart(@RequestParam Cart cart){
-//        return new ResponseEntity<>(itemService.getAllByCart(cart), HttpStatus.OK);
-//    }
+    @GetMapping(path = "cart_id")
+    public ResponseEntity<List> getAllByCart(@RequestParam Integer id){
+        return new ResponseEntity<>(itemService.getAllByCart(id), HttpStatus.OK);
+    }
 
-//    @GetMapping(path = "all-available")
-//    public ResponseEntity<List> getAllAvailable(){
-//        return new ResponseEntity<>(itemService.getAllAvailable(), HttpStatus.OK);
-//    }
+    @GetMapping(path = "all-available")
+    public ResponseEntity<List> getAllAvailable(){
+        return new ResponseEntity<>(itemService.getAllAvailable(), HttpStatus.OK);
+    }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable Integer id){

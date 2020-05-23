@@ -57,14 +57,13 @@ public class ItemServiceImpl implements ItemService {
         return itemDAO.getByCode(code);
     }
 
-//    @Override
-//    public List<Item> getAllByCart(Cart cart) {
-//        List<Item> items = itemDAO.getAllByCart(cart);
-//        return items;
-//    }
+    @Override
+    public List<Item> getAllByCart(Integer cartId) {
+        return itemDAO.getAllByCart(cartId);
+    }
 
-//    @Override
-//    public List<Item> getAllAvailable() {
-//        return itemDAO.getAllAvailable();
-//    }
+    @Override
+    public List<Item> getAllAvailable() {
+        return itemDAO.getAllAvailable();
+    }
 }
