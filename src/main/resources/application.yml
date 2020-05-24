@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/e_shop_rs
     username: "postgres"
-    password: "248842"
+    password: "123456"
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
@@ -13,3 +13,4 @@ spring:
         ddl-auto: update
 #    profiles:
 #      active: rest
+

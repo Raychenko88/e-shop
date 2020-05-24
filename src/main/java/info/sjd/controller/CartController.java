@@ -65,10 +65,9 @@ public class CartController {
 
     @PostMapping(path = "update_status")
     public ResponseEntity<Cart> updateStatus(@RequestParam Integer idParam,@RequestParam Integer closedParam){
-        Cart cart = cartService.updateStatus(idParam, closedParam);
-        if (cart != null){
-            return new ResponseEntity<>(cartService.updateStatus(idParam,closedParam), HttpStatus.OK);
+        if (updateStatus(idParam, closedParam) != null){
+            cartService.updateStatus(idParam,closedParam);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

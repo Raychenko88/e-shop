@@ -1,36 +1,25 @@
 package info.sjd.dao;
 
-import info.sjd.EShopRsApplication;
 import info.sjd.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-//@ContextConfiguration(classes = application)
-//@Import(UserDAOTest.class)
-//@SpringJUnitConfig(UserDAOTest.Config.class)
 class UserDAOTest {
-
-//    @Configuration
-//    static class Config {}
 
     @Autowired
     private UserDAO userDAO;
 
 
     @Test
-    void findByLogin() {
-        User user = new User(1,"test_login", "test_pass", "test_fn", "test_ln");
-        userDAO.save(user);
-        user.setLogin("t_login");
+    void findByLoginTest() {
+        User user = User.builder().login("test_login").password("test_pass").firstName("test_fn").lastName("test_ln").build();
         userDAO.save(user);
         User userFromDB = userDAO.findById(user.getId()).orElse(null);
         assertNotNull(userFromDB);
@@ -42,6 +31,12 @@ class UserDAOTest {
     }
 
     @Test
-    void findByLoginAndPassword() {
+    void findByLoginAndPasswordTest() {
+        User user1 = User.builder().login("test_login1").password("test_pass1").firstName("test_fn").lastName("test_ln").build();
+        userDAO.save(user1);
+        User user = userDAO.findByLoginAndPassword(user1.getLogin(), user1.getPassword());
+        assertNotNull(user);
+        assertEquals(user1.getLogin(),user.getLogin());
+        userDAO.delete(user1);
     }
 }

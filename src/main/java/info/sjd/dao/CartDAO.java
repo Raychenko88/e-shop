@@ -19,5 +19,5 @@ public interface CartDAO extends JpaRepository<Cart, Integer> {
     Cart getByUserAndOpenStatus(Integer id);
 
     @Query(value = "UPDATE carts SET closed=:closedParam WHERE id =:idParam",nativeQuery = true)
-    Cart updateStatus(Integer idParam, Integer closedParam);
+    void updateStatus(Integer idParam, Integer closedParam);
 }
