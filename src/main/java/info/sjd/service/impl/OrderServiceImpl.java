@@ -57,12 +57,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order updateAmount(Integer id, Integer amount) {
-        Order order = orderDAO.findById(id).orElse(null);
-        if (order.getId() != null){
-            return orderDAO.updateAmount(order.getId(),amount);
-        }
-        return null;
+    public void updateAmount(Integer id, Integer amount) {
+        orderDAO.updateAmount(id,amount);
     }
 
     @Override

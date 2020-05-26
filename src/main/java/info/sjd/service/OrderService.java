@@ -13,6 +13,6 @@ public interface OrderService {
     List<Order> findAll();
 
     List<Order> findAllByCart(Integer id);
-    Order updateAmount(Integer id, Integer amount);
+    void updateAmount(Integer id, Integer amount);
     Order findOrderByItem(Integer itemId);
 }
