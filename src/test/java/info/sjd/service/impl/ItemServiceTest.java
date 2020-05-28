@@ -23,7 +23,7 @@ class ItemServiceTest {
     ItemDAO itemDAO;
 
     @Test
-    void save() {
+    void saveTest() {
         Item item = Item.builder().name("test_name").code("t_code").price(123).availability(1).build();
         when(itemDAO.save(any(Item.class))).thenReturn(item);
         Item item1 = itemService.save(item);
@@ -33,7 +33,7 @@ class ItemServiceTest {
     }
 
     @Test
-    void update() {
+    void updateTest() {
         Item item = Item.builder().name("test_name").code("t_code").price(123).availability(1).build();
         item.setId(1);
         when(itemDAO.findById(anyInt())).thenReturn(of(item));

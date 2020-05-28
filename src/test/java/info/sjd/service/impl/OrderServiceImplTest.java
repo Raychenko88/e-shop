@@ -39,7 +39,7 @@ class OrderServiceImplTest {
     CartDAO cartDAO;
 
     @Test
-    void save() {
+    void saveTest() {
         User user = User.builder().login("test_login111").password("test_pass").firstName("test_fn").lastName("test_ln").build();
         Cart cart = Cart.builder().closed(0).user(user).creationTime(currentTime).build();
         Item item = Item.builder().name("test_name").code("t_code").price(123).availability(1).build();
@@ -51,7 +51,7 @@ class OrderServiceImplTest {
     }
 
     @Test
-    void update() {
+    void updateTest() {
         User user = User.builder().login("test_login111").password("test_pass").firstName("test_fn").lastName("test_ln").build();
         Cart cart = Cart.builder().closed(0).user(user).creationTime(currentTime).build();
         Item item = Item.builder().name("test_name").code("t_code").price(123).availability(1).build();

@@ -23,7 +23,7 @@ class UserServiceTest {
     UserDAO userDAO;
 
     @Test
-    void save() {
+    void saveTest() {
         User user = User.builder().login("test_login111").password("test_pass").firstName("test_fn").lastName("test_ln").build();
         when(userDAO.save(any(User.class))).thenReturn(user);
         User user1 = userService.save(user);
@@ -34,7 +34,7 @@ class UserServiceTest {
 
 
     @Test
-    void update() {
+    void updateTest() {
         User user = User.builder().login("test_login111").password("test_pass").firstName("test_fn").lastName("test_ln").build();
         user.setId(1);
         when(userDAO.findById(anyInt())).thenReturn(of(user));

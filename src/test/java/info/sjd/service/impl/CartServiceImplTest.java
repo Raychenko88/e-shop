@@ -35,7 +35,7 @@ class CartServiceImplTest {
     CartDAO cartDAO;
 
     @Test
-    void save() {
+    void saveTest() {
         User user = User.builder().login("test_login111").password("test_pass").firstName("test_fn").lastName("test_ln").build();
         Cart cart = Cart.builder().closed(0).user(user).creationTime(currentTime).build();
         when(cartDAO.save(any(Cart.class))).thenReturn(cart);
@@ -45,7 +45,7 @@ class CartServiceImplTest {
     }
 
     @Test
-    void update() {
+    void updateTest() {
         User user = User.builder().login("test_login111").password("test_pass").firstName("test_fn").lastName("test_ln").build();
         Cart cart = Cart.builder().closed(0).user(user).creationTime(currentTime).build();
         cart.setId(1);
