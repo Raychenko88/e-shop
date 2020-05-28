@@ -34,7 +34,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart update(Cart cart) {
-        if (cart.getId() != null){
+        if (cart.getId() != null && cartDAO.findById(cart.getId()).isPresent()){
             log.info("Cart was updated");
             return cartDAO.save(cart);
         }

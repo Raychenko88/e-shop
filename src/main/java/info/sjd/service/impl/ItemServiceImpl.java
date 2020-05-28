@@ -35,7 +35,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item update(Item item) {
-        if (item != null && item.getId() != null){
+        if (item.getId() != null && itemDAO.findById(item.getId()).isPresent()){
             log.info("Item was updated");
             return itemDAO.save(item);
         }
