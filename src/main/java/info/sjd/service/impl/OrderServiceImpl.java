@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order update(Order order) {
-        if (order.getId() != null){
+        if (order.getId() != null && orderDAO.findById(order.getId()).isPresent()){
             log.info("Order was updated");
             return orderDAO.save(order);
         }
