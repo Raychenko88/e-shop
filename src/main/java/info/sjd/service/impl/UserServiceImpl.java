@@ -14,7 +14,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    protected UserDAO userDAO;
+    private UserDAO userDAO;
 
     @Override
     public User save(User user) {

@@ -1,4 +1,4 @@
-package info.sjd.service.impl;
+package info.sjd.service;
 
 import info.sjd.dao.UserDAO;
 import info.sjd.model.User;
@@ -17,25 +17,35 @@ import static org.mockito.Mockito.*;
 class UserServiceTest {
 
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
 
     @MockBean
     UserDAO userDAO;
 
     @Test
     void saveTest() {
-        User user = User.builder().login("test_login111").password("test_pass").firstName("test_fn").lastName("test_ln").build();
+        User user = User.builder().
+                login("test_login111").
+                password("test_pass").
+                firstName("test_fn").
+                lastName("test_ln").
+                build();
         when(userDAO.save(any(User.class))).thenReturn(user);
         User user1 = userService.save(user);
         assertNotNull(user1);
         assertEquals(user.getLogin(), user1.getLogin());
-        verify(userDAO,times(1)).save(any(User.class));
+        verify(userDAO, times(1)).save(any(User.class));
     }
 
 
     @Test
     void updateTest() {
-        User user = User.builder().login("test_login111").password("test_pass").firstName("test_fn").lastName("test_ln").build();
+        User user = User.builder().
+                login("test_login111").
+                password("test_pass").
+                firstName("test_fn").
+                lastName("test_ln").
+                build();
         user.setId(1);
         when(userDAO.findById(anyInt())).thenReturn(of(user));
         when(userDAO.save(any(User.class))).thenReturn(user);
