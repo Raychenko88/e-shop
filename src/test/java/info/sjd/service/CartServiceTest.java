@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class CartServiceImplTest {
+class CartServiceTest {
 
     private Long currentTime = new Date().getTime();
 

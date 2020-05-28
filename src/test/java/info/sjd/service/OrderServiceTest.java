@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class OrderServiceImplTest {
+class OrderServiceTest {
 
     private Long currentTime = new Date().getTime();
 
