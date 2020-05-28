@@ -62,11 +62,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart updateStatus(Integer idParam, Integer closedParam) {
-        Cart cart = cartDAO.findById(idParam).orElse(null);
-        if (cart.getId() != null){
-            return cartDAO.updateStatus(idParam, closedParam);
-        }
-        return null;
+    public void updateStatus(Integer idParam, Integer closedParam) {
+        cartDAO.updateStatus(idParam, closedParam);
     }
 }

@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/e_shop_rs
     username: "postgres"
-    password: "248842"
+    password: "123456"
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
@@ -11,5 +11,9 @@ spring:
     show-sql: true
     hibernate:
         ddl-auto: update
+    properties:
+      hibernate:
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
 #    profiles:
 #      active: rest
+
