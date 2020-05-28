@@ -60,10 +60,11 @@ public class OrderController {
 
     @GetMapping(path = "update_amount")
     public ResponseEntity<Order> updateAmount(@RequestParam Integer id,@RequestParam Integer amount){
-        if (updateAmount(id, amount) != null){
+        if (orderService.findById(id) != null){
             orderService.updateAmount(id,amount);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @GetMapping(path = "find_order_by_item")
