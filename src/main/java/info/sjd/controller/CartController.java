@@ -19,7 +19,7 @@ public class CartController {
     @PutMapping
     public ResponseEntity<Cart> save(@RequestBody Cart cart) {
         Cart cartFromDB = cartService.save(cart);
-        if (cartFromDB == null) {
+        if (cartFromDB != null) {
             return new ResponseEntity<>(cart, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

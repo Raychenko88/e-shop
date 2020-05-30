@@ -34,6 +34,7 @@ class UserControllerTest {
     @Autowired
     TestRestTemplate testRestTemplate; // тестовый http клиент
 
+
     @Test
     void saveSuccessful() throws URISyntaxException {
         User user = User.builder().
@@ -46,15 +47,6 @@ class UserControllerTest {
         RequestEntity<User> requestEntity = new RequestEntity<>(user, HttpMethod.PUT, new URI("/user"));
         ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(userService,times(1)).save(any(User.class));
-    }
-
-    @Test
-    void saveUnsuccessful() throws URISyntaxException {
-        when(userService.save(any(User.class))).thenReturn(null);
-        RequestEntity<User> requestEntity = new RequestEntity<>(new User(), HttpMethod.PUT, new URI("/user"));
-        ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
-        assertEquals(responseEntity.getStatusCode(), HttpStatus.NOT_ACCEPTABLE);
         verify(userService,times(1)).save(any(User.class));
     }
 
