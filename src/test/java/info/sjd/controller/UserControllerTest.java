@@ -36,7 +36,7 @@ class UserControllerTest {
 
 
     @Test
-    void saveSuccessful() throws URISyntaxException {
+    void saveSuccessfulTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -47,11 +47,11 @@ class UserControllerTest {
         RequestEntity<User> requestEntity = new RequestEntity<>(user, HttpMethod.PUT, new URI("/user"));
         ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(userService,times(1)).save(any(User.class));
+        verify(userService, times(1)).save(any(User.class));
     }
 
     @Test
-    void updateSuccessful() throws URISyntaxException {
+    void updateSuccessfulTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -62,20 +62,20 @@ class UserControllerTest {
         RequestEntity<User> requestEntity = new RequestEntity<>(user, HttpMethod.POST, new URI("/user"));
         ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(userService,times(1)).update(any(User.class));
+        verify(userService, times(1)).update(any(User.class));
     }
 
     @Test
-    void updateUnsuccessful() throws URISyntaxException {
+    void updateUnsuccessfulTest() throws URISyntaxException {
         when(userService.update(any(User.class))).thenReturn(null);
         RequestEntity<User> requestEntity = new RequestEntity<>(new User(), HttpMethod.POST, new URI("/user"));
         ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.NOT_ACCEPTABLE);
-        verify(userService,times(1)).update(any(User.class));
+        verify(userService, times(1)).update(any(User.class));
     }
 
     @Test
-    void getByIdSuccessful() throws URISyntaxException {
+    void getByIdTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -86,11 +86,11 @@ class UserControllerTest {
         RequestEntity<User> requestEntity = new RequestEntity<>(new User(), HttpMethod.GET, new URI("/user/3"));
         ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(userService,times(1)).findById(anyInt());
+        verify(userService, times(1)).findById(anyInt());
     }
 
     @Test
-    void getAll() throws URISyntaxException {
+    void getAllTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -101,11 +101,11 @@ class UserControllerTest {
         RequestEntity<User> requestEntity = new RequestEntity<>(new User(), HttpMethod.GET, new URI("/user"));
         ResponseEntity<List> responseEntity = testRestTemplate.exchange(requestEntity, List.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(userService,times(1)).findAll();
+        verify(userService, times(1)).findAll();
     }
 
     @Test
-    void getByLogin() throws URISyntaxException {
+    void getByLoginTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -118,12 +118,12 @@ class UserControllerTest {
                 .path("/by-login").query("login={keyword}").buildAndExpand("log");
         RequestEntity<User> requestEntity = new RequestEntity<>(HttpMethod.GET, new URI(uriComponents.toString()));
         ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
-        assertEquals(responseEntity.getStatusCode(),HttpStatus.OK);
-        verify(userService,times(1)).findByLogin(anyString());
+        assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+        verify(userService, times(1)).findByLogin(anyString());
     }
 
     @Test
-    void getByLoginAndPassword() throws URISyntaxException {
+    void getByLoginAndPasswordTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -136,12 +136,12 @@ class UserControllerTest {
                 .path("by-login-and-password").query("login={keyword}").query("password={keyword}").buildAndExpand("log", "pass");
         RequestEntity<User> requestEntity = new RequestEntity<>(HttpMethod.GET, new URI(uriComponents.toString()));
         ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
-        assertEquals(responseEntity.getStatusCode(),HttpStatus.OK);
-        verify(userService,times(1)).findByLoginAndPassword(anyString(), anyString());
+        assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+        verify(userService, times(1)).findByLoginAndPassword(anyString(), anyString());
     }
 
     @Test
-    void delete() throws URISyntaxException {
+    void deleteTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -152,6 +152,6 @@ class UserControllerTest {
         RequestEntity<User> requestEntity = new RequestEntity<>(new User(), HttpMethod.DELETE, new URI("/user/3"));
         ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(userService,times(1)).findById(anyInt());
+        verify(userService, times(1)).findById(anyInt());
     }
 }

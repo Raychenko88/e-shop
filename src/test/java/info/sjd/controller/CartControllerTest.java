@@ -34,14 +34,11 @@ class CartControllerTest {
     @MockBean
     CartService cartService;
 
-    @MockBean
-    UserService userService;
-
     @Autowired
     TestRestTemplate testRestTemplate;
 
     @Test
-    void saveSuccessful() throws URISyntaxException {
+    void saveSuccessfulTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -56,20 +53,20 @@ class CartControllerTest {
         RequestEntity<Cart> requestEntity = new RequestEntity<>(cart, HttpMethod.PUT, new URI("/cart"));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(cartService,times(1)).save(any(Cart.class));
+        verify(cartService, times(1)).save(any(Cart.class));
     }
 
     @Test
-    void saveUnsuccessful() throws URISyntaxException {
+    void saveUnsuccessfulTest() throws URISyntaxException {
         when(cartService.save(any(Cart.class))).thenReturn(null);
         RequestEntity<Cart> requestEntity = new RequestEntity<>(new Cart(), HttpMethod.PUT, new URI("/cart"));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.NOT_ACCEPTABLE);
-        verify(cartService,times(1)).save(any(Cart.class));
+        verify(cartService, times(1)).save(any(Cart.class));
     }
 
     @Test
-    void updateSuccessful() throws URISyntaxException {
+    void updateSuccessfulTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -84,20 +81,20 @@ class CartControllerTest {
         RequestEntity<Cart> requestEntity = new RequestEntity<>(cart, HttpMethod.POST, new URI("/cart"));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(cartService,times(1)).update(any(Cart.class));
+        verify(cartService, times(1)).update(any(Cart.class));
     }
 
     @Test
-    void updateUnsuccessful() throws URISyntaxException {
+    void updateUnsuccessfulTest() throws URISyntaxException {
         when(cartService.update(any(Cart.class))).thenReturn(null);
         RequestEntity<Cart> requestEntity = new RequestEntity<>(new Cart(), HttpMethod.POST, new URI("/cart"));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.NOT_ACCEPTABLE);
-        verify(cartService,times(1)).update(any(Cart.class));
+        verify(cartService, times(1)).update(any(Cart.class));
     }
 
     @Test
-    void getById() throws URISyntaxException {
+    void getByIdTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -112,11 +109,11 @@ class CartControllerTest {
         RequestEntity<Cart> requestEntity = new RequestEntity<>(cart, HttpMethod.GET, new URI("/cart/3"));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(cartService,times(1)).findById(anyInt());
+        verify(cartService, times(1)).findById(anyInt());
     }
 
     @Test
-    void getAll() throws URISyntaxException {
+    void getAllTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -131,11 +128,11 @@ class CartControllerTest {
         RequestEntity<Cart> requestEntity = new RequestEntity<>(new Cart(), HttpMethod.GET, new URI("/cart"));
         ResponseEntity<List> responseEntity = testRestTemplate.exchange(requestEntity, List.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(cartService,times(1)).findAll();
+        verify(cartService, times(1)).findAll();
     }
 
     @Test
-    void delete() throws URISyntaxException {
+    void deleteTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -150,11 +147,11 @@ class CartControllerTest {
         RequestEntity<Cart> requestEntity = new RequestEntity<>(cart, HttpMethod.DELETE, new URI("/cart/3"));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
-        verify(cartService,times(1)).findById(anyInt());
+        verify(cartService, times(1)).findById(anyInt());
     }
 
     @Test
-    void getAllByUserAndPeriod() throws URISyntaxException {
+    void getAllByUserAndPeriodTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -172,12 +169,12 @@ class CartControllerTest {
                         query("timeUp={keyword}").buildAndExpand("3", "111111111", "333333333");
         RequestEntity<Cart> requestEntity = new RequestEntity<>(HttpMethod.GET, new URI(uriComponents.toString()));
         ResponseEntity<List> responseEntity = testRestTemplate.exchange(requestEntity, List.class);
-        assertEquals(responseEntity.getStatusCode(),HttpStatus.OK);
-        verify(cartService,times(1)).getAllByUserAndPeriod(anyInt(), anyLong(), anyLong());
+        assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+        verify(cartService, times(1)).getAllByUserAndPeriod(anyInt(), anyLong(), anyLong());
     }
 
     @Test
-    void getByUserAndOpenStatus() throws URISyntaxException {
+    void getByUserAndOpenStatusTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -194,12 +191,12 @@ class CartControllerTest {
                 .path("open_status").query("id={keyword}").buildAndExpand("3");
         RequestEntity<Cart> requestEntity = new RequestEntity<>(HttpMethod.GET, new URI(uriComponents.toString()));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
-        assertEquals(responseEntity.getStatusCode(),HttpStatus.OK);
-        verify(cartService,times(1)).getByUserAndOpenStatus(anyInt());
+        assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+        verify(cartService, times(1)).getByUserAndOpenStatus(anyInt());
     }
 
     @Test
-    void updateStatusSuccessful() throws URISyntaxException {
+    void updateStatusSuccessfulTest() throws URISyntaxException {
         User user = User.builder().
                 login("test_login111").
                 password("test_pass").
@@ -218,13 +215,13 @@ class CartControllerTest {
                         query("closedParam={keyword}").buildAndExpand("3", "1");
         RequestEntity<Cart> requestEntity = new RequestEntity<>(HttpMethod.POST, new URI(uriComponents.toString()));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
-        assertEquals(responseEntity.getStatusCode(),HttpStatus.OK);
-        verify(cartService,times(1)).findById(anyInt());
-        verify(cartService,times(1)).updateStatus(anyInt(), anyInt());
+        assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+        verify(cartService, times(1)).findById(anyInt());
+        verify(cartService, times(1)).updateStatus(anyInt(), anyInt());
     }
 
     @Test
-    void updateStatusUnsuccessful() throws URISyntaxException {
+    void updateStatusUnsuccessfulTest() throws URISyntaxException {
         when(cartService.findById(anyInt())).thenReturn(null);
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .host("/cart")
@@ -232,7 +229,7 @@ class CartControllerTest {
                         query("closedParam={keyword}").buildAndExpand("3", "1");
         RequestEntity<Cart> requestEntity = new RequestEntity<>(HttpMethod.POST, new URI(uriComponents.toString()));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
-        assertEquals(responseEntity.getStatusCode(),HttpStatus.NOT_ACCEPTABLE);
-        verify(cartService,times(1)).findById(anyInt());
+        assertEquals(responseEntity.getStatusCode(), HttpStatus.NOT_ACCEPTABLE);
+        verify(cartService, times(1)).findById(anyInt());
     }
 }
