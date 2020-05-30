@@ -19,7 +19,7 @@ public class OrderController {
     @PutMapping
     public ResponseEntity<Order> save(@RequestBody Order order){
         Order orderFromDB = orderService.save(order);
-        if (orderFromDB == null){
+        if (orderFromDB != null){
             return new ResponseEntity<>(order, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
