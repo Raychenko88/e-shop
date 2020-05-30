@@ -30,8 +30,6 @@ import static org.mockito.Mockito.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OrderControllerTest {
 
-    private Long currentTime = new Date().getTime();
-
     @MockBean
     OrderService orderService;
 
@@ -40,22 +38,9 @@ class OrderControllerTest {
 
     @Test
     void saveSuccessfulTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
-        Cart cart = Cart.builder().
-                closed(0).user(user).
-                creationTime(currentTime).
-                build();
-        Item item = Item.builder().
-                name("test_name").
-                code("t_code").
-                price(123).
-                availability(1).
-                build();
+        User user = new User();
+        Cart cart = new Cart();
+        Item item = new Item();
         Order order = Order.builder().
                 item(item).
                 cart(cart).
@@ -79,22 +64,9 @@ class OrderControllerTest {
 
     @Test
     void updateSuccessfulTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
-        Cart cart = Cart.builder().
-                closed(0).user(user).
-                creationTime(currentTime).
-                build();
-        Item item = Item.builder().
-                name("test_name").
-                code("t_code").
-                price(123).
-                availability(1).
-                build();
+        User user = new User();
+        Cart cart = new Cart();
+        Item item = new Item();
         Order order = Order.builder().
                 item(item).
                 cart(cart).
@@ -118,22 +90,9 @@ class OrderControllerTest {
 
     @Test
     void findByIdTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
-        Cart cart = Cart.builder().
-                closed(0).user(user).
-                creationTime(currentTime).
-                build();
-        Item item = Item.builder().
-                name("test_name").
-                code("t_code").
-                price(123).
-                availability(1).
-                build();
+        User user = new User();
+        Cart cart = new Cart();
+        Item item = new Item();
         Order order = Order.builder().
                 item(item).
                 cart(cart).
@@ -148,22 +107,9 @@ class OrderControllerTest {
 
     @Test
     void findAllTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
-        Cart cart = Cart.builder().
-                closed(0).user(user).
-                creationTime(currentTime).
-                build();
-        Item item = Item.builder().
-                name("test_name").
-                code("t_code").
-                price(123).
-                availability(1).
-                build();
+        User user = new User();
+        Cart cart = new Cart();
+        Item item = new Item();
         Order order = Order.builder().
                 item(item).
                 cart(cart).
@@ -178,52 +124,28 @@ class OrderControllerTest {
 
     @Test
     void deleteTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
-        Cart cart = Cart.builder().
-                closed(0).user(user).
-                creationTime(currentTime).
-                build();
-        Item item = Item.builder().
-                name("test_name").
-                code("t_code").
-                price(123).
-                availability(1).
-                build();
+        User user = new User();
+        Cart cart = new Cart();
+        Item item = new Item();
         Order order = Order.builder().
                 item(item).
                 cart(cart).
                 amount(10).
                 build();
         when(orderService.findById(anyInt())).thenReturn(order);
+        doNothing().when(orderService).delete(isA(Order.class));
         RequestEntity<Order> requestEntity = new RequestEntity<>(order, HttpMethod.DELETE, new URI("/order/3"));
         ResponseEntity<Order> responseEntity = testRestTemplate.exchange(requestEntity, Order.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
         verify(orderService, times(1)).findById(anyInt());
+        verify(orderService, times(1)).delete(isA(Order.class));
     }
 
     @Test
     void findAllByCartTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
-        Cart cart = Cart.builder().
-                closed(0).user(user).
-                creationTime(currentTime).
-                build();
-        Item item = Item.builder().
-                name("test_name").
-                code("t_code").
-                price(123).
-                availability(1).
-                build();
+        User user = new User();
+        Cart cart = new Cart();
+        Item item = new Item();
         Order order = Order.builder().
                 item(item).
                 cart(cart).
@@ -241,22 +163,9 @@ class OrderControllerTest {
 
     @Test
     void updateAmountSuccessful() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
-        Cart cart = Cart.builder().
-                closed(0).user(user).
-                creationTime(currentTime).
-                build();
-        Item item = Item.builder().
-                name("test_name").
-                code("t_code").
-                price(123).
-                availability(1).
-                build();
+        User user = new User();
+        Cart cart = new Cart();
+        Item item = new Item();
         Order order = Order.builder().
                 item(item).
                 cart(cart).
@@ -290,22 +199,9 @@ class OrderControllerTest {
 
     @Test
     void findOrderByItem() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
-        Cart cart = Cart.builder().
-                closed(0).user(user).
-                creationTime(currentTime).
-                build();
-        Item item = Item.builder().
-                name("test_name").
-                code("t_code").
-                price(123).
-                availability(1).
-                build();
+        User user = new User();
+        Cart cart = new Cart();
+        Item item = new Item();
         Order order = Order.builder().
                 item(item).
                 cart(cart).

@@ -176,9 +176,11 @@ class ItemControllerTest {
                 availability(1).
                 build();
         when(itemService.findById(anyInt())).thenReturn(item);
+        doNothing().when(itemService).delete(isA(Item.class));
         RequestEntity<Item> requestEntity = new RequestEntity<>(item, HttpMethod.DELETE, new URI("/item/3"));
         ResponseEntity<Item> responseEntity = testRestTemplate.exchange(requestEntity, Item.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
         verify(itemService, times(1)).findById(anyInt());
+        verify(itemService, times(1)).delete(any(Item.class));
     }
 }

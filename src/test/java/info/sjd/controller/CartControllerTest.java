@@ -39,12 +39,7 @@ class CartControllerTest {
 
     @Test
     void saveSuccessfulTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
+        User user = new User();
         Cart cart = Cart.builder().
                 closed(0).user(user).
                 creationTime(currentTime).
@@ -67,12 +62,7 @@ class CartControllerTest {
 
     @Test
     void updateSuccessfulTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
+        User user = new User();
         Cart cart = Cart.builder().
                 closed(0).user(user).
                 creationTime(currentTime).
@@ -95,12 +85,7 @@ class CartControllerTest {
 
     @Test
     void getByIdTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
+        User user = new User();
         Cart cart = Cart.builder().
                 closed(0).user(user).
                 creationTime(currentTime).
@@ -114,12 +99,7 @@ class CartControllerTest {
 
     @Test
     void getAllTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
+        User user = new User();
         Cart cart = Cart.builder().
                 closed(0).user(user).
                 creationTime(currentTime).
@@ -133,31 +113,23 @@ class CartControllerTest {
 
     @Test
     void deleteTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
+        User user = new User();
         Cart cart = Cart.builder().
                 closed(0).user(user).
                 creationTime(currentTime).
                 build();
         when(cartService.findById(anyInt())).thenReturn(cart);
+        doNothing().when(cartService).delete(isA(Cart.class));
         RequestEntity<Cart> requestEntity = new RequestEntity<>(cart, HttpMethod.DELETE, new URI("/cart/3"));
         ResponseEntity<Cart> responseEntity = testRestTemplate.exchange(requestEntity, Cart.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
         verify(cartService, times(1)).findById(anyInt());
+        verify(cartService, times(1)).delete(any(Cart.class));
     }
 
     @Test
     void getAllByUserAndPeriodTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
+        User user = new User();
         Cart cart = Cart.builder().
                 closed(0).user(user).
                 creationTime(currentTime).
@@ -175,12 +147,7 @@ class CartControllerTest {
 
     @Test
     void getByUserAndOpenStatusTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
+        User user = new User();
         Cart cart = Cart.builder().
                 closed(0).user(user).
                 creationTime(currentTime).
@@ -197,12 +164,7 @@ class CartControllerTest {
 
     @Test
     void updateStatusSuccessfulTest() throws URISyntaxException {
-        User user = User.builder().
-                login("test_login111").
-                password("test_pass").
-                firstName("test_fn").
-                lastName("test_ln").
-                build();
+        User user = new User();
         Cart cart = Cart.builder().
                 closed(0).user(user).
                 creationTime(currentTime).

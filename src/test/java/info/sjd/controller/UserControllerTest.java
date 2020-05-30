@@ -1,5 +1,6 @@
 package info.sjd.controller;
 
+import info.sjd.model.Order;
 import info.sjd.model.User;
 import info.sjd.service.UserService;
 import org.junit.jupiter.api.Test;
@@ -149,9 +150,11 @@ class UserControllerTest {
                 lastName("test_ln").
                 build();
         when(userService.findById(anyInt())).thenReturn(user);
+        doNothing().when(userService).delete(isA(User.class));
         RequestEntity<User> requestEntity = new RequestEntity<>(new User(), HttpMethod.DELETE, new URI("/user/3"));
         ResponseEntity<User> responseEntity = testRestTemplate.exchange(requestEntity, User.class);
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
         verify(userService, times(1)).findById(anyInt());
+        verify(userService, times(1)).delete(isA(User.class));
     }
 }
