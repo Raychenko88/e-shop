@@ -22,7 +22,7 @@ public class ItemController {
     @PutMapping
     public ResponseEntity<Item> save(@RequestBody Item item){
         Item itemFromDB = itemService.save(item);
-        if (itemFromDB == null){
+        if (itemFromDB != null){
             return new ResponseEntity<>(item, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

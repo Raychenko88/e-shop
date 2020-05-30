@@ -19,7 +19,7 @@ public class OrderController {
     @PutMapping
     public ResponseEntity<Order> save(@RequestBody Order order){
         Order orderFromDB = orderService.save(order);
-        if (orderFromDB == null){
+        if (orderFromDB != null){
             return new ResponseEntity<>(order, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
@@ -58,7 +58,7 @@ public class OrderController {
         return new ResponseEntity<>(orderService.findAllByCart(id), HttpStatus.OK);
     }
 
-    @GetMapping(path = "update_amount")
+    @PostMapping(path = "update_amount")
     public ResponseEntity<Order> updateAmount(@RequestParam Integer id,@RequestParam Integer amount){
         if (orderService.findById(id) != null){
             orderService.updateAmount(id,amount);
